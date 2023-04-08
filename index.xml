@@ -8,13 +8,14 @@
     <language>en-us</language>
     <lastBuildDate>Sat, 08 Apr 2023 15:05:27 -0400</lastBuildDate><atom:link href="https://cglavin50.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Temporary Post</title>
+      <title>Intro to Hugo!</title>
       <link>https://cglavin50.github.io/posts/myfirstpost/</link>
       <pubDate>Sat, 08 Apr 2023 15:05:27 -0400</pubDate>
       
       <guid>https://cglavin50.github.io/posts/myfirstpost/</guid>
-      <description></description>
-      <content></content>
+      <description>I&amp;rsquo;m still learning Hugo, so these are some notes before I forget how to deploy a new post. First of all, I&amp;rsquo;m hosting everything in my &amp;ldquo;blog&amp;rdquo; github repo, however the deployment is the actual GitHub pages repo. I&amp;rsquo;ve linked the pages repo as a submodule, so after running &amp;ldquo;hugo -t terminal&amp;rdquo;, the content will compile into the public folder, pushing it from the blog to the actual site (will likely schedule a chron job for commits every night).</description>
+      <content>&lt;p&gt;I&amp;rsquo;m still learning Hugo, so these are some notes before I forget how to deploy a new post. First of all, I&amp;rsquo;m hosting everything in my &amp;ldquo;blog&amp;rdquo; github repo, however the deployment is the actual GitHub pages repo. I&amp;rsquo;ve linked the pages repo as a submodule, so after running &amp;ldquo;hugo -t terminal&amp;rdquo;, the content will compile into the public folder, pushing it from the blog to the actual site (will likely schedule a chron job for commits every night). I locally installed the theme, so won&amp;rsquo;t worry about updating that (recommendation course of action is through Github actions). As for now, the to do list is to keep exploring with Hugo, and write the about page as well as a formal first post tonight to summarize everything I&amp;rsquo;ve learned.&lt;/p&gt;
+</content>
     </item>
     
   </channel>
