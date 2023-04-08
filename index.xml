@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cooper Glavin&#39;s Blog</title>
+    <link>https://cglavin50.github.io/</link>
+    <description>Recent content on Cooper Glavin&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 08 Apr 2023 15:05:27 -0400</lastBuildDate><atom:link href="https://cglavin50.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Temporary Post</title>
+      <link>https://cglavin50.github.io/posts/myfirstpost/</link>
+      <pubDate>Sat, 08 Apr 2023 15:05:27 -0400</pubDate>
+      
+      <guid>https://cglavin50.github.io/posts/myfirstpost/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+  </channel>
+</rss>
