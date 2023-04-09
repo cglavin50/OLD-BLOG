@@ -18,5 +18,22 @@
 </content>
     </item>
     
+    <item>
+      <title>About</title>
+      <link>https://cglavin50.github.io/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cglavin50.github.io/about/</guid>
+      <description>Who am I? I am an undergraduate at Georgetown University, pursuing a B.S. in Computer Science, and a minor in Mathematics, graduating in May 2024. Passionate about problem-solving, networking, and developing an easy-access internet for all, I love to learn and am always looking to find new tech to dive into.
+What do I do? I am currently involved with anti-censorship research involving new network protocols on campus, and am a backend developer who enjoys learning web-dev on the side.</description>
+      <content>&lt;h1 id=&#34;who-am-i&#34;&gt;Who am I?&lt;/h1&gt;
+&lt;p&gt;I am an undergraduate at Georgetown University, pursuing a B.S. in Computer Science, and a minor in Mathematics, graduating in May 2024. Passionate about problem-solving, networking, and developing an easy-access internet for all, I love to learn and am always looking to find new tech to dive into.&lt;/p&gt;
+&lt;h2 id=&#34;what-do-i-do&#34;&gt;What do I do?&lt;/h2&gt;
+&lt;p&gt;I am currently involved with anti-censorship research involving new network protocols on campus, and am a backend developer who enjoys learning web-dev on the side. I love to code, and have been diving into Go recently as my language of choice, however am also interested in deployments and devops.&lt;/p&gt;
+&lt;h3 id=&#34;goals&#34;&gt;Goals&lt;/h3&gt;
+&lt;p&gt;As I love to learn, I wanted to create this page as a blog post, where I intend to write one article covering something new I learned, every day. That way, I hold myself accountable, and I can use this as a place to refer back to when I want to build off something I remember from a previous review day.&lt;/p&gt;
+</content>
+    </item>
+    
   </channel>
 </rss>
