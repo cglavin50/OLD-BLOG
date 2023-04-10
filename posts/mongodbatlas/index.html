@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>MongoDB Atlas :: Terminal</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Today I learned&amp;hellip; As I was crunched for time, my goal for today was to mobilize my ToDoList App project from a local DB to a cloud-based one. While in the future I plan to switch to a relational DB, in my original project I wanted to learn more about APIs, so I picked Mongo to get experience working with a nonSQL DB.
+MongoDB Atlas MongoDB offers a cloud-based option called Atlas, which comes with a Hobbyist tiers for new developers." />
+<meta name="keywords" content=", " />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="https://cglavin50.github.io/posts/mongodbatlas/" />
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cglavin50.github.io/styles.css">
+
+
+
+
+
+
+
+  <link rel="shortcut icon" href="https://cglavin50.github.io/img/theme-colors/pink.png">
+  <link rel="apple-touch-icon" href="https://cglavin50.github.io/img/theme-colors/pink.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="MongoDB Atlas">
+<meta property="og:description" content="Today I learned&amp;hellip; As I was crunched for time, my goal for today was to mobilize my ToDoList App project from a local DB to a cloud-based one. While in the future I plan to switch to a relational DB, in my original project I wanted to learn more about APIs, so I picked Mongo to get experience working with a nonSQL DB.
+MongoDB Atlas MongoDB offers a cloud-based option called Atlas, which comes with a Hobbyist tiers for new developers." />
+<meta property="og:url" content="https://cglavin50.github.io/posts/mongodbatlas/" />
+<meta property="og:site_name" content="Terminal" />
+
+  
+  
+  <meta property="og:image" content="https://cglavin50.github.io/">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2023-04-09 20:23:48 -0400 EDT" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body class="pink">
+
+
+<div class="container headings--one-size">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Terminal
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/showcase">Showcase</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/showcase">Showcase</a></li>
+        
+      
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="https://cglavin50.github.io/posts/mongodbatlas/">MongoDB Atlas</a>
+  </h1>
+  <div class="post-meta">
+    
+      <time class="post-date">
+        2023-04-09 ::
+        
+      </time>
+    
+    
+    
+  </div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="https://cglavin50.github.io/tags/"></a>&nbsp;
+      
+      #<a href="https://cglavin50.github.io/tags/"></a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="today-i-learned">Today I learned&hellip;<a href="#today-i-learned" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>As I was crunched for time, my goal for today was to mobilize my ToDoList App project from a local DB to a cloud-based one. While in the future I plan to switch to a relational DB, in my original project I wanted to learn more about APIs, so I picked Mongo to get experience working with a nonSQL DB.</p>
+<h2 id="mongodb-atlas">MongoDB Atlas<a href="#mongodb-atlas" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>MongoDB offers a cloud-based option called Atlas, which comes with a Hobbyist tiers for new developers. The layout was essentially the same as MongoDB Compass, where I run my local deployment, with everything running within a project scale. Each project has database deployments same as Compass, and each deployment can be configured as a cloud-cluster. Beyond that, each project has a network scope, defining who can connect to this project, as well as users which define access permissions (read/write on a db deployment basis). As I have the most experience with AWS, I chose to run my cloud deployment for my ToDoList DB over AWS out of the presented options from Atlas.</p>
+<h3 id="pain-points">Pain Points<a href="#pain-points" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>I&rsquo;ve never managed user/passwords over URLs, so I needed to learn about URL encoding to make sure everything was protected. The MongoDB client implicitly will run a TLS handshake so there&rsquo;s encryption there, but to deal with special characters, I used the URL.QueryString and URL.Values.Encode functions to embed the the authentication into the URI string.
+Another pain point I encountered was dealing with my internets subnetting scheme. As I live on-campus, the network I access from leads to tons of issues with permissions, so I tried to debug what range of acceptable IPs would work with Atlas. Starting with 0.0.0.0, I eventually figured out that Georgetown maintains a /16 instead of a /17, which after updating seemed to fix my issues.
+One last aside, I also learned how to properly manage cron jobs, and set up a bash script that should backup (ex commit and push) the repos for this blog every day, so I can just create the posts and not worry about commiting and everything before I log off for the day.
+All in all this was a busy day with not a ton of time to code, so I didn&rsquo;t run into that many noteworthy topics. Now that I&rsquo;ve set the DB to be able to run independently of the actual web app, I&rsquo;m going to look into creating a Docker image for this whole project.</p>
+
+      </div></div>
+
+  
+    
+<div class="pagination">
+    <div class="pagination__title">
+        <span class="pagination__title-h">Read other posts</span>
+        <hr />
+    </div>
+    <div class="pagination__buttons">
+        
+        
+        <span class="button next">
+            <a href="https://cglavin50.github.io/posts/myfirstpost/">
+                <span class="button__text">Intro to Hugo!</span>
+                <span class="button__icon">→</span>
+            </a>
+        </span>
+        
+    </div>
+</div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2023 Powered by <a href="http://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>
