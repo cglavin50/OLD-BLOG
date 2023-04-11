@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "styles.css",
-	"sourceRoot": "/mnt/c/Users/pegui/OneDrive/Desktop/coding-work/blog/cooperglavin",
+	"sourceRoot": "/home/cglav/coding-work/blog/cooperglavin",
 	"sources": [
 		"css/base.scss",
 		"themes/terminal/assets/css/variables.scss",

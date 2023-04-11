@@ -6,7 +6,28 @@
     <description>Recent content on Terminal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 09 Apr 2023 20:23:48 -0400</lastBuildDate><atom:link href="https://cglavin50.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 10 Apr 2023 19:38:57 -0400</lastBuildDate><atom:link href="https://cglavin50.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Firebase</title>
+      <link>https://cglavin50.github.io/posts/firebase/</link>
+      <pubDate>Mon, 10 Apr 2023 19:38:57 -0400</pubDate>
+      
+      <guid>https://cglavin50.github.io/posts/firebase/</guid>
+      <description>Today I learned about Firebase! Today I had some time, so I cleaned up my workstation, learned about deployments, and started a quick little side project involving React and Firebase.
+What is Firebase? Firebase is esseentially Google&amp;rsquo;s SDK that allows you to deploy and scale apps, providing an API for everything to user authentication, a non-relational database, ML, and even mobile alerts. With a strong React JS library, I was able to follow a guide and get a basic real-time chat app up and running.</description>
+      <content>&lt;h1 id=&#34;today-i-learned-about-firebase&#34;&gt;Today I learned about Firebase!&lt;/h1&gt;
+&lt;p&gt;Today I had some time, so I cleaned up my workstation, learned about deployments, and started a quick little side project involving React and Firebase.&lt;/p&gt;
+&lt;h2 id=&#34;what-is-firebase&#34;&gt;What is Firebase?&lt;/h2&gt;
+&lt;p&gt;Firebase is esseentially Google&amp;rsquo;s SDK that allows you to deploy and scale apps, providing an API for everything to user authentication, a non-relational database, ML, and even mobile alerts. With a strong React JS library, I was able to follow a guide and get a basic real-time chat app up and running. With AWS-like IAM configuration, I was able to create security rules surrounding the DB, easily creating a function to limit only Georgetown users from manipulating the DB (still needed to implement this on the frontend as well), as well as validate input such that only signed in, non-banned (to be implemented soon) users can access.&lt;/p&gt;
+&lt;h3 id=&#34;what-did-i-practice&#34;&gt;What did I practice?&lt;/h3&gt;
+&lt;p&gt;I was able to get some more React practice under my belt. Hooks and states are becoming more comprehensive, and I was able to use them as well as props to effectively create this app without getting too lost. While in the future I want to try some projects with Typescript to use JS as a OOP-langauge, functional React is starting to make sense to me. I got more practice learning APIs/reading documentation with Firebase, and got to see how it can easily make up a strong backend for any project (for cheap too). While I do enjoy backend-development, this may become my choice for quick and easy deployments for web apps, given the tools for authentication and databases were pretty much 2 mouse-clicks away to get running.
+I was able to remember some old JS syntax, with windows alerts for pop-up error messages (will clean this up later), and getting some more practice with React ref&amp;rsquo;s as well.
+I also got some deployment practice with Firebase Hosting. Easily combined with Github and NPM, I was able to run npm run build to get production code in the build folder, which then is used from firebase&amp;rsquo;s deploy function to get up and running, even setting up Github actions to automate this process with every PR to the repo. With a free domain as well, Firebase Hosting will definitely be a tool I use in the future for applications. The firebase CLI made the deployment process easy, with just firebase login, init, and deploy to get everything set up.&lt;/p&gt;
+&lt;h4 id=&#34;what-next&#34;&gt;What next?&lt;/h4&gt;
+&lt;p&gt;Well, I want to clean this app up a bit more and see if I can create an anonymous chat system for Georgetown students. This involves creating a ban scheme (could use ML for sentiment analysis), and I could create mobile alerts as well. While I&amp;rsquo;m about to hit a time-crunch for the next two weeks, I&amp;rsquo;ll definitely come back to this project when I have time. I want to continue practicing my react for web development, and this is as good a place as any to work.&lt;/p&gt;
+</content>
+    </item>
+    
     <item>
       <title>MongoDB Atlas</title>
       <link>https://cglavin50.github.io/posts/mongodbatlas/</link>
@@ -56,9 +77,14 @@ What do I do? I am currently involved with anti-censorship research involving ne
       <content>&lt;h1 id=&#34;who-am-i&#34;&gt;Who am I?&lt;/h1&gt;
 &lt;p&gt;I am an undergraduate at Georgetown University, pursuing a B.S. in Computer Science, and a minor in Mathematics, graduating in May 2024. Passionate about problem-solving, networking, and developing an easy-access internet for all, I love to learn and am always looking to find new tech to dive into.&lt;/p&gt;
 &lt;h2 id=&#34;what-do-i-do&#34;&gt;What do I do?&lt;/h2&gt;
-&lt;p&gt;I am currently involved with anti-censorship research involving new network protocols on campus, and am a backend developer who enjoys learning web-dev on the side. I love to code, and have been diving into Go recently as my language of choice, however am also interested in deployments and devops.&lt;/p&gt;
+&lt;p&gt;I am currently involved with anti-censorship research involving new network protocols on campus, and am a backend developer who enjoys learning web-dev on the side. I love to code, and have been diving into Go recently as my language of choice. As a tech nerd, I&amp;rsquo;m also interested in deployments/devops, and in general just love configuring computers.&lt;/p&gt;
 &lt;h3 id=&#34;goals&#34;&gt;Goals&lt;/h3&gt;
-&lt;p&gt;As I love to learn, I wanted to create this page as a blog post, where I intend to write one article covering something new I learned, every day. That way, I hold myself accountable, and I can use this as a place to refer back to when I want to build off something I remember from a previous review day.&lt;/p&gt;
+&lt;p&gt;As I love to learn, I wanted to create this page as a blog post, where I intend to write one article covering something new I learned, every day. That way, I hold myself accountable, and I can use this as a place to refer back to when I want to build off something I remember from a previous review day. I want to grow as a developer, and with this I can trick myself into coding for at least 30 minutes a day, and force myself to find some new tech, language, framework, what-have-you that interests me everyday.&lt;/p&gt;
+&lt;h4 id=&#34;links&#34;&gt;Links&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.linkedin.com/in/cooper-glavin-5852351aa/&#34;&gt;LinkedIn&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/cglavin50&#34;&gt;GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </content>
     </item>
     
