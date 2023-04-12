@@ -6,7 +6,22 @@
     <description>Recent content on Terminal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 10 Apr 2023 19:38:57 -0400</lastBuildDate><atom:link href="https://cglavin50.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 12 Apr 2023 00:20:12 -0400</lastBuildDate><atom:link href="https://cglavin50.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Day 1 of Typescript</title>
+      <link>https://cglavin50.github.io/posts/day-1-of-typescript/</link>
+      <pubDate>Wed, 12 Apr 2023 00:20:12 -0400</pubDate>
+      
+      <guid>https://cglavin50.github.io/posts/day-1-of-typescript/</guid>
+      <description>Trying out typescript Today was a chaotic day (with interview prep), so didn&amp;rsquo;t do much independent work. That said, I spent some time learning about JavaScript, and investigated popular frameworks (for frontend and backend). I think I&amp;rsquo;ll continue using React for frontend, but interesting in using Meteor and more Node.js for backend, and I intend to switch over to TypeScript. First project, a web crawler with backend of basic TypeScript. I may build out a separate frontend with Typescript React as well, but we&amp;rsquo;ll see after I get this working.</description>
+      <content>&lt;h3 id=&#34;trying-out-typescript&#34;&gt;Trying out typescript&lt;/h3&gt;
+&lt;p&gt;Today was a chaotic day (with interview prep), so didn&amp;rsquo;t do much independent work. That said, I spent some time learning about JavaScript, and investigated popular frameworks (for frontend and backend). I think I&amp;rsquo;ll continue using React for frontend, but interesting in using Meteor and more Node.js for backend, and I intend to switch over to TypeScript.
+First project, a web crawler with backend of basic TypeScript. I may build out a separate frontend with Typescript React as well, but we&amp;rsquo;ll see after I get this working. It&amp;rsquo;s going to crawl linkedin job postings with passed in keywords, and scrape relevant info (pay, remote, website, etc) into a DB (mongo? Maybe a relational?). Typescript seems a bit annoying syntactically at first, but worth the time. The project itself doesn&amp;rsquo;t seem awful, making continuous GET requests, pulling the html from the response, then using Cheerio to parse and search for passed in args (cheerio uses a JQuery implementation, so I have some references to work off). Thinking about locally storing csv files as they would be easy to manipulate, but likely will use some sort of DB (want more experience here, especially with relational DBs in the cloud). That&amp;rsquo;s all the notes for now, but looking forward to it.
+For people who don&amp;rsquo;t know about TypeScript, it&amp;rsquo;s a statically typed (technically optionally) JS, allowing you to get better debugging and in theory make a more sound system. To be honest, I&amp;rsquo;m new to JS and used to being explicit in variable initiation, so I think it&amp;rsquo;ll help me make more sense of the language. That said, the syntax seems a bit weird to get the hang of, esepcially explicitly defining objects, and union sets seem interesting (basically an enum object) but I&amp;rsquo;m looking forward to diving head first.
+Besides that I made some changes to my workstation. I added some plugins to my zsh terminal, and releazed that I was working with files from the Windows file system that was making everything slow. I refactored my file system for dev projects and moved it over into the Linux file system, now everything has been incredibly fast.&lt;/p&gt;
+</content>
+    </item>
+    
     <item>
       <title>Firebase</title>
       <link>https://cglavin50.github.io/posts/firebase/</link>
