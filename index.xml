@@ -6,7 +6,28 @@
     <description>Recent content on Terminal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 12 Apr 2023 20:37:16 -0400</lastBuildDate><atom:link href="https://cglavin50.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 13 Apr 2023 19:45:11 -0400</lastBuildDate><atom:link href="https://cglavin50.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LinkedIn WebCrawling in JS pt.1</title>
+      <link>https://cglavin50.github.io/posts/webcrawling-with-cheerio-and-axios/</link>
+      <pubDate>Thu, 13 Apr 2023 19:45:11 -0400</pubDate>
+      
+      <guid>https://cglavin50.github.io/posts/webcrawling-with-cheerio-and-axios/</guid>
+      <description>Intro to Web Crawling If you don&amp;rsquo;t know, web crawling (or scraping), refers to using some tool to automate searching through the internet, &amp;lsquo;scraping&amp;rsquo; the content you want and storing it as local files, in a DB, what have you. While there are a ton of great tools for this, I started in TypeScript, using Cheerio and Axios to perform LinkedIn web-crawling. An effective web-crawler will parse through the selected domain, be it LinkedIn, USAToday, or whatever, fetching the HTML of releveant pages and storing them for local use.</description>
+      <content>&lt;h1 id=&#34;intro-to-web-crawling&#34;&gt;Intro to Web Crawling&lt;/h1&gt;
+&lt;p&gt;If you don&amp;rsquo;t know, web crawling (or scraping), refers to using some tool to automate searching through the internet, &amp;lsquo;scraping&amp;rsquo; the content you want and storing it as local files, in a DB, what have you. While there are a ton of great tools for this, I started in TypeScript, using Cheerio and Axios to perform LinkedIn web-crawling. An effective web-crawler will parse through the selected domain, be it LinkedIn, USAToday, or whatever, fetching the HTML of releveant pages and storing them for local use. To be more selective, the crawler can use some parsing tools to find keywords, or just extract headers, the body, whatever you want. For JS projects, the go to seems to be &lt;strong&gt;Axios&lt;/strong&gt; and &lt;strong&gt;Cheerio&lt;/strong&gt;, for fetching and parsing respectively.&lt;/p&gt;
+&lt;h2 id=&#34;fetching-the-content-with-axios&#34;&gt;Fetching the Content with Axios&lt;/h2&gt;
+&lt;p&gt;Axios is a simple to use library that allows node.js to make HTTP requests, with automatic serialization to JSON, multipart FormData, and url-encoded for the body. It is &lt;em&gt;isomorphic&lt;/em&gt; (meaning that node and browser can run the same code), and supports the promise API (allowing easy asynchronous functions). In the context of web-scraping, it can be as easy as typing &lt;code&gt;axios.get(url)&lt;/code&gt;, and then reading the response data (don&amp;rsquo;t forget to use &lt;code&gt;.then()&lt;/code&gt; as part of the promise API). The hard part can come with figuring out exactly what URL to use. For LinkedIn, after some messing around I found this format worked best:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=job%20title%20here&amp;amp;location=United%20StatesgeoId=103644278&amp;amp;trk=public_jobs_jobs-search-bar_search-submit&amp;amp;position=1&amp;amp;pageNum=0&amp;amp;start=0&#34;&gt;https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=job%20title%20here&amp;amp;location=United%20StatesgeoId=103644278&amp;amp;trk=public_jobs_jobs-search-bar_search-submit&amp;amp;position=1&amp;amp;pageNum=0&amp;amp;start=0&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;querying-with-cheerio&#34;&gt;Querying with Cheerio&lt;/h3&gt;
+&lt;p&gt;Cheerio allows you to make jQuery queries, all you need to do is define a cheerio object with &lt;code&gt;const $ = cheerio.load(response.data)&lt;/code&gt;, where response.data can be exchanged with any HTML code. From there, queries are easy. For LinkedIn, I just found all jobs by using &lt;code&gt;const jobs = $(&#39;li&#39;)&lt;/code&gt;, quering all list-items in the HTML. This is easily generalized, and you can query with selectors with the syntax &lt;code&gt;$(selector)&lt;/code&gt;, finding forms, lists, classes, etc. Cheerio also allows you to insert/edit the HTML, useful for situations where you need to automate filling out forms.&lt;/p&gt;
+&lt;h4 id=&#34;to-do&#34;&gt;To do&lt;/h4&gt;
+&lt;p&gt;While I&amp;rsquo;ve only just started this project, I hope to finish up a basic backend tomorrow, and which point I&amp;rsquo;ll write a followup for any tips for making your own web-crawler.&lt;/p&gt;
+</content>
+    </item>
+    
     <item>
       <title>Proxying 101 and HTTPS CONNECT</title>
       <link>https://cglavin50.github.io/posts/https-connect/</link>
