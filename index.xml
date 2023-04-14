@@ -6,7 +6,28 @@
     <description>Recent content on Terminal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 13 Apr 2023 19:45:11 -0400</lastBuildDate><atom:link href="https://cglavin50.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 14 Apr 2023 16:08:51 -0400</lastBuildDate><atom:link href="https://cglavin50.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LinkedIn WebCrawling in JS Pt.2</title>
+      <link>https://cglavin50.github.io/posts/linkedin-webcrawling-in-js-pt.2/</link>
+      <pubDate>Fri, 14 Apr 2023 16:08:51 -0400</pubDate>
+      
+      <guid>https://cglavin50.github.io/posts/linkedin-webcrawling-in-js-pt.2/</guid>
+      <description>After making some progress on the backend, I have a couple notes.
+Some additional tips for Cheerio The first step of using cheerio is calling cheerio.load(html) as discussed last time, so now I will go into the structure of Cheerio. As I&amp;rsquo;m using TypeScript, I have to be strict with my variable typing, so this should help others in the same boat. cheerio.load(html) returns a CheerioAPI object, which is an interface that allows you to query the HTML.</description>
+      <content>&lt;p&gt;After making some progress on the backend, I have a couple notes.&lt;/p&gt;
+&lt;h1 id=&#34;some-additional-tips-for-cheerio&#34;&gt;Some additional tips for Cheerio&lt;/h1&gt;
+&lt;p&gt;The first step of using cheerio is calling &lt;code&gt;cheerio.load(html)&lt;/code&gt; as discussed last time, so now I will go into the structure of Cheerio. As I&amp;rsquo;m using TypeScript, I have to be strict with my variable typing, so this should help others in the same boat. &lt;code&gt;cheerio.load(html)&lt;/code&gt; returns a CheerioAPI object, which is an interface that allows you to query the HTML. Queries will return Cheerio objects, which are generics, giving you an API to traverse and modify the set returned from the initial query. Cheerio supports 3 different classes (+ Cheerio objects), &lt;strong&gt;Element&lt;/strong&gt;, &lt;strong&gt;Document&lt;/strong&gt;, and &lt;strong&gt;Node&lt;/strong&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Element: an HTML element. Attributes name, attribs, children?, type?, returning the name of the tag, an Object mapping attribute names to values, an array of Children nodes, and an enum for Script/Style/Tag.&lt;/li&gt;
+&lt;li&gt;Document: the root node of the document (DOMS). It has parent and child nodes, as well as a cloneNode method.&lt;/li&gt;
+&lt;li&gt;Node: used to create DOM level 1 structures. Methods and attributes same as Document, just gneeralized&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;what-does-this-look-like&#34;&gt;What does this look like?&lt;/h2&gt;
+&lt;p&gt;In the LinkedIn Job Crawler, I first get the CheerioAPI: &lt;code&gt;const $:cheerio.CheerioAPI = cheerio.load(html);&lt;/code&gt;. Next, I get a Cheerio Object storing List Item elements: &lt;code&gt;const jobsHTML: cheerio.Cheerio&amp;lt;cheerio.Element&amp;gt; = $(&#39;li&#39;);&lt;/code&gt;. From there, queries are easy to write out, for example to find Job titles: &lt;code&gt;const jobTitle:string = $(element).find(&#39;h3.base-search-card__title&#39;).text().trim();&lt;/code&gt;, where &lt;code&gt;.find(tagName.className)&lt;/code&gt; gives us access to tags, then calling &lt;code&gt;.text()&lt;/code&gt; or &lt;code&gt;.attr(attrName)&lt;/code&gt; will allows us to find corresponding information.&lt;/p&gt;
+</content>
+    </item>
+    
     <item>
       <title>LinkedIn WebCrawling in JS pt.1</title>
       <link>https://cglavin50.github.io/posts/webcrawling-with-cheerio-and-axios/</link>
