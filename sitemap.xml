@@ -2,13 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://cglavin50.github.io/posts/linkedin-webcrawling-in-js-pt.2/</loc>
-    <lastmod>2023-04-14T16:08:51-04:00</lastmod>
+    <loc>https://cglavin50.github.io/posts/postgresql-vs-mysql/</loc>
+    <lastmod>2023-04-15T14:34:52-04:00</lastmod>
   </url><url>
     <loc>https://cglavin50.github.io/posts/</loc>
-    <lastmod>2023-04-14T16:08:51-04:00</lastmod>
+    <lastmod>2023-04-15T14:34:52-04:00</lastmod>
   </url><url>
     <loc>https://cglavin50.github.io/</loc>
+    <lastmod>2023-04-15T14:34:52-04:00</lastmod>
+  </url><url>
+    <loc>https://cglavin50.github.io/posts/linkedin-webcrawling-in-js-pt.2/</loc>
     <lastmod>2023-04-14T16:08:51-04:00</lastmod>
   </url><url>
     <loc>https://cglavin50.github.io/posts/webcrawling-with-cheerio-and-axios/</loc>
