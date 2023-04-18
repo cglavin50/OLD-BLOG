@@ -6,7 +6,53 @@
     <description>Recent content in Posts on Terminal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 16 Apr 2023 18:05:45 -0400</lastBuildDate><atom:link href="https://cglavin50.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 Apr 2023 00:02:09 -0400</lastBuildDate><atom:link href="https://cglavin50.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Channels</title>
+      <link>https://cglavin50.github.io/posts/channels/</link>
+      <pubDate>Tue, 18 Apr 2023 00:02:09 -0400</pubDate>
+      
+      <guid>https://cglavin50.github.io/posts/channels/</guid>
+      <description>Intro to Channels in Go As I got a day to work on some Golang projects, I wanted to cover channels in Go. First of all, what are Golang channels and what make them so great? Go is a language known for it&amp;rsquo;s concurrency support, and channels provide an easy way for concurrent goroutines to communicate/send data. Say I have some basic function here:
+package main import ( &amp;#34;fmt&amp;#34; &amp;#34;time&amp;#34; ) func main() { results := make(chan int) // created with the make keyword, we are creating a channel to receive integers over go func() { // so some calculations here time.</description>
+      <content>&lt;h1 id=&#34;intro-to-channels-in-go&#34;&gt;Intro to Channels in Go&lt;/h1&gt;
+&lt;p&gt;As I got a day to work on some Golang projects, I wanted to cover channels in Go. First of all, what are Golang channels and what make them so great? Go is a language known for it&amp;rsquo;s concurrency support, and channels provide an easy way for concurrent goroutines to communicate/send data. Say I have some basic function here:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;package main
+
+import (
+    &amp;#34;fmt&amp;#34;
+    &amp;#34;time&amp;#34;
+)
+
+func main() {
+    results := make(chan int) // created with the make keyword, we are creating a channel to receive integers over
+    go func() {
+        // so some calculations here
+        time.Sleep(10 * time.Second)
+        results &amp;lt;- computationalResult
+    }()
+
+    // perform some concurrent computations here
+    localResult := 5
+    total := &amp;lt;- results
+    total += localResult
+
+    fmt.Println(total)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;In this example, we can send off a goroutine to perform some more computationally heavy work, while continuing the flow in our main function. Then, we can wait until the channel receives a value to compute it to our local total, and finish everything. With easy to use syntax, channels allow us to easily send off multiple goroutines, then compile results and/or wait for specific values or signals to proceed through the flow of our code.&lt;/p&gt;
+&lt;p&gt;By default, channels are unbuffered in Go. In other words, for each send &lt;code&gt;channel &amp;lt;- &amp;quot;msg1&amp;quot;&lt;/code&gt;, there must be a corresponding receive &lt;code&gt;msgs &amp;lt;- channel&lt;/code&gt;. We can create a buffered channel, that allows us to accept a passed-in amount of values before a corresponding receive, ex &lt;code&gt;results := make(chan int, 4)&lt;/code&gt;, where four ints can be sent over the results channel before a receive must be called.&lt;/p&gt;
+&lt;p&gt;Finally, we can use &lt;code&gt;select{}&lt;/code&gt; to synchronize across multiple channels. Like a switch we define multiple cases, and then when a case can be ran, it will execute. If there are multiple available simultaneously, the switch will choose one at random. One example here:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;select {
+    case msgs &amp;lt;- msgsChannel:
+        fmt.Println(msgs)
+    case &amp;lt;- quitChannel:
+        fmt.Println(&amp;#34;quit message receieved&amp;#34;)
+        return
+} 
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Note: we can also wrap this in an infinte for loop to keep receiving messages until a quit is received, which will then finally exit the program.&lt;/p&gt;
+</content>
+    </item>
+    
     <item>
       <title>Postgre SQL with JS</title>
       <link>https://cglavin50.github.io/posts/crawlerp3/</link>
