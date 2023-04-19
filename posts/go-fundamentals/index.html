@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Go Fundamentals: Marshaling :: Terminal</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="As Go has increasingly become my go-to langauge for backend projects, I figured I should brush up on it&amp;rsquo;s fundamentals, and what better way to make sure you learned something that to teach it? As such I&amp;rsquo;m planning to make my series of blog posts over the next week Go-related, continuing from my (Channels article)[https://cglavin50.github.io/posts/channels/] last week. Today&amp;rsquo;s topic: Marshalling
+What is Marshalling? Marshalling is the process of transforming a memory representation of an object (typically a struct in Go), into data (ex converting an object into a JSON file)." />
+<meta name="keywords" content=", " />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="https://cglavin50.github.io/posts/go-fundamentals/" />
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cglavin50.github.io/styles.css">
+
+
+
+
+
+
+
+  <link rel="shortcut icon" href="https://cglavin50.github.io/img/theme-colors/pink.png">
+  <link rel="apple-touch-icon" href="https://cglavin50.github.io/img/theme-colors/pink.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Go Fundamentals: Marshaling">
+<meta property="og:description" content="As Go has increasingly become my go-to langauge for backend projects, I figured I should brush up on it&amp;rsquo;s fundamentals, and what better way to make sure you learned something that to teach it? As such I&amp;rsquo;m planning to make my series of blog posts over the next week Go-related, continuing from my (Channels article)[https://cglavin50.github.io/posts/channels/] last week. Today&amp;rsquo;s topic: Marshalling
+What is Marshalling? Marshalling is the process of transforming a memory representation of an object (typically a struct in Go), into data (ex converting an object into a JSON file)." />
+<meta property="og:url" content="https://cglavin50.github.io/posts/go-fundamentals/" />
+<meta property="og:site_name" content="Terminal" />
+
+  
+  
+  <meta property="og:image" content="https://cglavin50.github.io/">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2023-04-18 19:52:16 -0400 EDT" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body class="pink">
+
+
+<div class="container headings--one-size">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Cooper&#39;s Dev Blog
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/">Blog Posts</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/">Blog Posts</a></li>
+        
+      
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="https://cglavin50.github.io/posts/go-fundamentals/">Go Fundamentals: Marshaling</a>
+  </h1>
+  <div class="post-meta">
+    
+      <time class="post-date">
+        2023-04-18 ::
+        
+      </time>
+    
+    
+    
+  </div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="https://cglavin50.github.io/tags/"></a>&nbsp;
+      
+      #<a href="https://cglavin50.github.io/tags/"></a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <p>As Go has increasingly become my go-to langauge for backend projects, I figured I should brush up on it&rsquo;s fundamentals, and what better way to make sure you learned something that to teach it? As such I&rsquo;m planning to make my series of blog posts over the next week Go-related, continuing from my (Channels article)[https://cglavin50.github.io/posts/channels/] last week. Today&rsquo;s topic: Marshalling</p>
+<h1 id="what-is-marshalling">What is Marshalling?<a href="#what-is-marshalling" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>Marshalling is the process of transforming a memory representation of an object (typically a struct in Go), into data (ex converting an object into a JSON file). Luckily, Go has multiple APIs to work with JSON data, and today we will use the <strong>encoding/json</strong> package to show how to convert data into JSON format, and how to &lsquo;unmarshal&rsquo; it, or parse and extract the JSON data into an object.</p>
+<h1 id="marshalling-in-go">Marshalling in Go<a href="#marshalling-in-go" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>First things first, we need to import our encoding/json package.</p>
+<pre tabindex="0"><code>package main
+
+import (
+    &#34;encoding/json&#34;
+    &#34;fmt&#34;
+)
+</code></pre><p>Next, let&rsquo;s define a struct that we want to use, say a task for a (To-Do List Project)[https://github.com/cglavin50/to-do.git].</p>
+<pre tabindex="0"><code>type Task struct {
+    ID          int
+    TaskText    string
+    Status      bool
+}
+</code></pre><p>Note that all members begin with an upper-case letter, as this indicates an exported identifier, and can be used outside the package. This applies to the struct name, Task, as well.
+To marshal, all we need to do is create an instance of a task, and then use the <strong>json.Marshal()</strong> function, as seen below.</p>
+<pre tabindex="0"><code>func main() {
+    task := Task{ID: 1, TaskText: &#34;marshal this task&#34;, Status: false}
+    taskData, err := json.Marshal(task)
+    if err != nil {
+        fmt.Println(&#34;Error encoding the data&#34;, err)
+    }
+    fmt.Println(string(taskData))
+}
+</code></pre><p>The above program should print the Task in JSON format: <code>{&quot;ID&quot;:1,&quot;TaskText&quot;:&quot;marshal this task&quot;,&quot;Status&quot;:false}</code>. Next, let&rsquo;s unmarshal this data with the use of Field Tags.</p>
+<h1 id="unmarshalling">Unmarshalling<a href="#unmarshalling" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>We can add field tags, which correlate to the JSON interpretation of your data. We can include statements like &ldquo;omitempty&rdquo; to skip these values if they don&rsquo;t exist, and can even rename the variables if we want them to be lowercase, or any other use case when the variable name should be different than the JSON format. We can edit the Task struct with:</p>
+<pre tabindex="0"><code>type Task struct {
+    ID          int         `json:&#34;ID,omitempty&#34;
+    TaskText    string      `json:&#34;TaskText,omitempty&#34;
+    Status      bool        `json:&#34;Status,omitempty&#34;
+}
+</code></pre><p>Now, using this struct we can handle receieved JSON data (ex via a NoSQL DB like Mongo), with the <strong>json.Unmarshal()</strong> function.</p>
+<pre tabindex="0"><code>func main() {
+    taskJSON := `{&#34;ID&#34;:1,&#34;TaskText&#34;:&#34;unmarshal this task&#34;,&#34;Status&#34;:false}`
+    var task Task
+    json.Unmarshal([]byte(taskJSON), &amp;task)
+    fmt.Printf(&#34;ID: %s, TaskText: %s, Status: %s&#34;, task.ID, task.TaskText, task.Status())
+}
+</code></pre><p>This should return <code>ID: 1, TaskText: unmarshal this text, Status: false</code>
+Two final notes:</p>
+<ol>
+<li>Go will make tolerate case-insensitive JSON properties. So if our JSON input looked like <code>{&quot;id&quot;:1,&quot;taskText&quot;:&quot;unmarshal this task&quot;,&quot;status&quot;:false}</code>, it would still map accordingly.</li>
+<li>json.unmarshal will also work with arrays, so if we had an array of objects in the JSON, like <code>[{&quot;ID&quot;:1,&quot;TaskText&quot;:&quot;marshal this task&quot;,&quot;Status&quot;:false}, {&quot;ID&quot;:1,&quot;TaskText&quot;:&quot;publish this blog post&quot;,&quot;Status&quot;:true}</code>, and <code>var tasks []Task</code>, <code>json.Unmarshal([]byte(taskJSON), &amp;tasks)</code> would populate that array of Task objects accordingly.</li>
+</ol>
+
+      </div></div>
+
+  
+    
+<div class="pagination">
+    <div class="pagination__title">
+        <span class="pagination__title-h">Read other posts</span>
+        <hr />
+    </div>
+    <div class="pagination__buttons">
+        
+        
+        <span class="button next">
+            <a href="https://cglavin50.github.io/posts/channels/">
+                <span class="button__text">Channels</span>
+                <span class="button__icon">→</span>
+            </a>
+        </span>
+        
+    </div>
+</div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2023 Powered by <a href="http://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

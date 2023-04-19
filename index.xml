@@ -6,7 +6,66 @@
     <description>Recent content on Terminal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 18 Apr 2023 00:02:09 -0400</lastBuildDate><atom:link href="https://cglavin50.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 Apr 2023 19:52:16 -0400</lastBuildDate><atom:link href="https://cglavin50.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go Fundamentals: Marshaling</title>
+      <link>https://cglavin50.github.io/posts/go-fundamentals/</link>
+      <pubDate>Tue, 18 Apr 2023 19:52:16 -0400</pubDate>
+      
+      <guid>https://cglavin50.github.io/posts/go-fundamentals/</guid>
+      <description>As Go has increasingly become my go-to langauge for backend projects, I figured I should brush up on it&amp;rsquo;s fundamentals, and what better way to make sure you learned something that to teach it? As such I&amp;rsquo;m planning to make my series of blog posts over the next week Go-related, continuing from my (Channels article)[https://cglavin50.github.io/posts/channels/] last week. Today&amp;rsquo;s topic: Marshalling
+What is Marshalling? Marshalling is the process of transforming a memory representation of an object (typically a struct in Go), into data (ex converting an object into a JSON file).</description>
+      <content>&lt;p&gt;As Go has increasingly become my go-to langauge for backend projects, I figured I should brush up on it&amp;rsquo;s fundamentals, and what better way to make sure you learned something that to teach it? As such I&amp;rsquo;m planning to make my series of blog posts over the next week Go-related, continuing from my (Channels article)[https://cglavin50.github.io/posts/channels/] last week. Today&amp;rsquo;s topic: Marshalling&lt;/p&gt;
+&lt;h1 id=&#34;what-is-marshalling&#34;&gt;What is Marshalling?&lt;/h1&gt;
+&lt;p&gt;Marshalling is the process of transforming a memory representation of an object (typically a struct in Go), into data (ex converting an object into a JSON file). Luckily, Go has multiple APIs to work with JSON data, and today we will use the &lt;strong&gt;encoding/json&lt;/strong&gt; package to show how to convert data into JSON format, and how to &amp;lsquo;unmarshal&amp;rsquo; it, or parse and extract the JSON data into an object.&lt;/p&gt;
+&lt;h1 id=&#34;marshalling-in-go&#34;&gt;Marshalling in Go&lt;/h1&gt;
+&lt;p&gt;First things first, we need to import our encoding/json package.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;package main
+
+import (
+    &amp;#34;encoding/json&amp;#34;
+    &amp;#34;fmt&amp;#34;
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Next, let&amp;rsquo;s define a struct that we want to use, say a task for a (To-Do List Project)[https://github.com/cglavin50/to-do.git].&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;type Task struct {
+    ID          int
+    TaskText    string
+    Status      bool
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Note that all members begin with an upper-case letter, as this indicates an exported identifier, and can be used outside the package. This applies to the struct name, Task, as well.
+To marshal, all we need to do is create an instance of a task, and then use the &lt;strong&gt;json.Marshal()&lt;/strong&gt; function, as seen below.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;func main() {
+    task := Task{ID: 1, TaskText: &amp;#34;marshal this task&amp;#34;, Status: false}
+    taskData, err := json.Marshal(task)
+    if err != nil {
+        fmt.Println(&amp;#34;Error encoding the data&amp;#34;, err)
+    }
+    fmt.Println(string(taskData))
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The above program should print the Task in JSON format: &lt;code&gt;{&amp;quot;ID&amp;quot;:1,&amp;quot;TaskText&amp;quot;:&amp;quot;marshal this task&amp;quot;,&amp;quot;Status&amp;quot;:false}&lt;/code&gt;. Next, let&amp;rsquo;s unmarshal this data with the use of Field Tags.&lt;/p&gt;
+&lt;h1 id=&#34;unmarshalling&#34;&gt;Unmarshalling&lt;/h1&gt;
+&lt;p&gt;We can add field tags, which correlate to the JSON interpretation of your data. We can include statements like &amp;ldquo;omitempty&amp;rdquo; to skip these values if they don&amp;rsquo;t exist, and can even rename the variables if we want them to be lowercase, or any other use case when the variable name should be different than the JSON format. We can edit the Task struct with:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;type Task struct {
+    ID          int         `json:&amp;#34;ID,omitempty&amp;#34;
+    TaskText    string      `json:&amp;#34;TaskText,omitempty&amp;#34;
+    Status      bool        `json:&amp;#34;Status,omitempty&amp;#34;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Now, using this struct we can handle receieved JSON data (ex via a NoSQL DB like Mongo), with the &lt;strong&gt;json.Unmarshal()&lt;/strong&gt; function.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;func main() {
+    taskJSON := `{&amp;#34;ID&amp;#34;:1,&amp;#34;TaskText&amp;#34;:&amp;#34;unmarshal this task&amp;#34;,&amp;#34;Status&amp;#34;:false}`
+    var task Task
+    json.Unmarshal([]byte(taskJSON), &amp;amp;task)
+    fmt.Printf(&amp;#34;ID: %s, TaskText: %s, Status: %s&amp;#34;, task.ID, task.TaskText, task.Status())
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This should return &lt;code&gt;ID: 1, TaskText: unmarshal this text, Status: false&lt;/code&gt;
+Two final notes:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Go will make tolerate case-insensitive JSON properties. So if our JSON input looked like &lt;code&gt;{&amp;quot;id&amp;quot;:1,&amp;quot;taskText&amp;quot;:&amp;quot;unmarshal this task&amp;quot;,&amp;quot;status&amp;quot;:false}&lt;/code&gt;, it would still map accordingly.&lt;/li&gt;
+&lt;li&gt;json.unmarshal will also work with arrays, so if we had an array of objects in the JSON, like &lt;code&gt;[{&amp;quot;ID&amp;quot;:1,&amp;quot;TaskText&amp;quot;:&amp;quot;marshal this task&amp;quot;,&amp;quot;Status&amp;quot;:false}, {&amp;quot;ID&amp;quot;:1,&amp;quot;TaskText&amp;quot;:&amp;quot;publish this blog post&amp;quot;,&amp;quot;Status&amp;quot;:true}&lt;/code&gt;, and &lt;code&gt;var tasks []Task&lt;/code&gt;, &lt;code&gt;json.Unmarshal([]byte(taskJSON), &amp;amp;tasks)&lt;/code&gt; would populate that array of Task objects accordingly.&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    </item>
+    
     <item>
       <title>Channels</title>
       <link>https://cglavin50.github.io/posts/channels/</link>
