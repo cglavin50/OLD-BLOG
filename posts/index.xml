@@ -6,16 +6,45 @@
     <description>Recent content in Posts on Terminal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 18 Apr 2023 19:52:16 -0400</lastBuildDate><atom:link href="https://cglavin50.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 19 Apr 2023 23:30:12 -0400</lastBuildDate><atom:link href="https://cglavin50.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go Fundamentals: Intro</title>
+      <link>https://cglavin50.github.io/posts/go-fundamentals2/</link>
+      <pubDate>Wed, 19 Apr 2023 23:30:12 -0400</pubDate>
+      
+      <guid>https://cglavin50.github.io/posts/go-fundamentals2/</guid>
+      <description>While these will be published out of order, this is the intro to Go fundamentals article, covering what Go (or Golang) is, why you should use it, as well as some key concepts to know. While my other articles on Go fundamentals about (channels)[https://cglavin50.github.io/posts/channels/] and (marshalling)[https://cglavin50.github.io/posts/go-fundamentals/] will be more specific, this article will cover a broad base around Go.
+What is Go? Go, or Golang, is Google&amp;rsquo;s programming language that was developed in 2007 to improve productivity in multicore networking machines.</description>
+      <content>&lt;p&gt;While these will be published out of order, this is the intro to Go fundamentals article, covering what Go (or Golang) is, why you should use it, as well as some key concepts to know. While my other articles on Go fundamentals about (channels)[https://cglavin50.github.io/posts/channels/] and (marshalling)[https://cglavin50.github.io/posts/go-fundamentals/] will be more specific, this article will cover a broad base around Go.&lt;/p&gt;
+&lt;h1 id=&#34;what-is-go&#34;&gt;What is Go?&lt;/h1&gt;
+&lt;p&gt;Go, or Golang, is Google&amp;rsquo;s programming language that was developed in 2007 to improve productivity in multicore networking machines. At it&amp;rsquo;s core, Go does exactly that - provide excellent support for concurreny and networking functionality, all while being lightweight with blazing fast compile times. Go is a strongly statically typed compiled langauge, residing mostly in the C family, and comes with an extensive built-in library (called the runtime). Go does not use a VM like Java, and instead Go&amp;rsquo;s compiler will directly generate binary code like C/C++. Go also has a unique scheme of packages, modules, and workspaces that removes much overhead of C-style includes (although has a bit of a learning curve to pick up).&lt;/p&gt;
+&lt;h1 id=&#34;how-to-format-go-code&#34;&gt;How to format Go code&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;Go packages&lt;/strong&gt; are a way to bundle code with a single goal. A package is a directory of .go files, which allows you to organize your code into reusable units, and import other useful packages (from runtime or github) easily. Go has no private, protected, public scheme, so instead global variables within a .go file will have package scope (meaning all files with the same package header can access them). Additionally, Go supports exported and unexported values (having the first letter of a function or variable means it will be exported), where exported values will be visable outside the package as well. Go consideres each directory its own package, and these serve as the building blocks for any Go program.&lt;/p&gt;
+&lt;p&gt;**&lt;strong&gt;Go modules&lt;/strong&gt; are a collection of Go packages, all linked with a &amp;ldquo;go.mod&amp;rdquo; file. Typically each project should have one module, and each module specifies the path to all packages used. Go provides a simple interface for using packages, with &lt;code&gt;$ go install github.com/example&lt;/code&gt; installing and appending directives to the go.mod file to use it. The call &lt;code&gt;$ go get github.com/example&lt;/code&gt; will only add, update, or remove dependencies from the go.mod file, not long building/installing (this is a newer change from Go 1.18). After installing external packages, we can use them with &lt;code&gt;import (&amp;quot;github.com/example&amp;quot;)&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;In the case you need to work across multiple modules at the same time, &lt;strong&gt;Go workspaces&lt;/strong&gt; are the way to go. In the root of your project where both modules reside, you can use a go.work file to specify the location of each module, allowing us to refer to packages across the modules.&lt;/p&gt;
+&lt;h1 id=&#34;typing-in-go&#34;&gt;Typing in Go&lt;/h1&gt;
+&lt;p&gt;Go is very explicit about typing. There is no automatic conversion (or promotion), so to do something like&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;i := 20 // int
+f := 20.2 // float64
+sum := i + int(j) // j will be converted to an int, otherwise the compiler will throw an error
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Go supports a variety of data types, with unsigned ints being denoted as uint, and allowing the user to specify the size of the integer, as either 8, 16, 32, or 64 bits (ex uint32 refers to a 32-bit unsigned int). There are strings, booleans (bool), and numeric data types. Go has no support for the char data type, instead using the byte (uint8) or rune (int32) to refer to an ASCII character or UTF-8 unicode character respectively. Finally, Go supports (but does not require) static type declaration with the syntax &lt;code&gt;var x int&lt;/code&gt;, as the compiler knows x&amp;rsquo;s type and can perform linking and run-time, but typically users will perform declaration and instantiation with the &amp;quot; := &amp;quot; operator, ex `x := 10 (note: the := operator can only be used when you are creating a new variable).&lt;/p&gt;
+&lt;p&gt;The above mentioned (strings, numerics, booleans) are all primitive types, meaning Go will store them as read-only data, so actions like string concatenation will make a new string. Just like Java, the best way to get around this is with the strings.Builder data type, and call the .WriteString method to avoid memory copying.&lt;/p&gt;
+&lt;h1 id=&#34;parameters-in-go&#34;&gt;Parameters in Go&lt;/h1&gt;
+&lt;p&gt;Go is a pass-by-value language, so to get around this functions can take in pointers to data, such as &lt;code&gt;func myFunc(temp *string) { temp = &amp;quot;new string&amp;quot; }&lt;/code&gt;, and passing in a reference via the &lt;code&gt;&amp;amp;&lt;/code&gt; operator. Pointers and dereferencing function the same in Go as they do in the C-family, so C/C++ programmers should feel right at home.&lt;/p&gt;
+&lt;h1 id=&#34;slices-in-go&#34;&gt;Slices in Go&lt;/h1&gt;
+&lt;p&gt;As an honorable mention, Go slices are a dynamically sized way to view elements of an array that are frequently used. With the syntax &lt;code&gt;arrayName[low : high]&lt;/code&gt;, the slice will give you a way to access the values of the array, from the low index (inclusive), to the high index (exclusive).&lt;/p&gt;
+</content>
+    </item>
+    
     <item>
       <title>Go Fundamentals: Marshaling</title>
       <link>https://cglavin50.github.io/posts/go-fundamentals/</link>
       <pubDate>Tue, 18 Apr 2023 19:52:16 -0400</pubDate>
       
       <guid>https://cglavin50.github.io/posts/go-fundamentals/</guid>
-      <description>As Go has increasingly become my go-to langauge for backend projects, I figured I should brush up on it&amp;rsquo;s fundamentals, and what better way to make sure you learned something that to teach it? As such I&amp;rsquo;m planning to make my series of blog posts over the next week Go-related, continuing from my (Channels article)[https://cglavin50.github.io/posts/channels/] last week. Today&amp;rsquo;s topic: Marshalling
+      <description>As Go has increasingly become my go-to langauge for backend projects, I figured I should brush up on it&amp;rsquo;s fundamentals, and what better way to make sure you learned something that to teach it? As such I&amp;rsquo;m planning to make my series of blog posts over the next week Go-related, continuing from my Channels article last week. Today&amp;rsquo;s topic: Marshalling
 What is Marshalling? Marshalling is the process of transforming a memory representation of an object (typically a struct in Go), into data (ex converting an object into a JSON file).</description>
-      <content>&lt;p&gt;As Go has increasingly become my go-to langauge for backend projects, I figured I should brush up on it&amp;rsquo;s fundamentals, and what better way to make sure you learned something that to teach it? As such I&amp;rsquo;m planning to make my series of blog posts over the next week Go-related, continuing from my (Channels article)[https://cglavin50.github.io/posts/channels/] last week. Today&amp;rsquo;s topic: Marshalling&lt;/p&gt;
+      <content>&lt;p&gt;As Go has increasingly become my go-to langauge for backend projects, I figured I should brush up on it&amp;rsquo;s fundamentals, and what better way to make sure you learned something that to teach it? As such I&amp;rsquo;m planning to make my series of blog posts over the next week Go-related, continuing from my &lt;a href=&#34;https://cglavin50.github.io/posts/channels/&#34;&gt;Channels article&lt;/a&gt; last week. Today&amp;rsquo;s topic: Marshalling&lt;/p&gt;
 &lt;h1 id=&#34;what-is-marshalling&#34;&gt;What is Marshalling?&lt;/h1&gt;
 &lt;p&gt;Marshalling is the process of transforming a memory representation of an object (typically a struct in Go), into data (ex converting an object into a JSON file). Luckily, Go has multiple APIs to work with JSON data, and today we will use the &lt;strong&gt;encoding/json&lt;/strong&gt; package to show how to convert data into JSON format, and how to &amp;lsquo;unmarshal&amp;rsquo; it, or parse and extract the JSON data into an object.&lt;/p&gt;
 &lt;h1 id=&#34;marshalling-in-go&#34;&gt;Marshalling in Go&lt;/h1&gt;
@@ -26,7 +55,7 @@ import (
     &amp;#34;encoding/json&amp;#34;
     &amp;#34;fmt&amp;#34;
 )
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Next, let&amp;rsquo;s define a struct that we want to use, say a task for a (To-Do List Project)[https://github.com/cglavin50/to-do.git].&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Next, let&amp;rsquo;s define a struct that we want to use, say a task for a &lt;a href=&#34;https://github.com/cglavin50/to-do.git&#34;&gt;To-Do List Project&lt;/a&gt;.&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;type Task struct {
     ID          int
     TaskText    string
@@ -67,7 +96,7 @@ Two final notes:&lt;/p&gt;
     </item>
     
     <item>
-      <title>Channels</title>
+      <title>Go Fundamentals: Channels</title>
       <link>https://cglavin50.github.io/posts/channels/</link>
       <pubDate>Tue, 18 Apr 2023 00:02:09 -0400</pubDate>
       

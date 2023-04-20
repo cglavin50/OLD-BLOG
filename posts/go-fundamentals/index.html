@@ -6,7 +6,7 @@
   
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="As Go has increasingly become my go-to langauge for backend projects, I figured I should brush up on it&amp;rsquo;s fundamentals, and what better way to make sure you learned something that to teach it? As such I&amp;rsquo;m planning to make my series of blog posts over the next week Go-related, continuing from my (Channels article)[https://cglavin50.github.io/posts/channels/] last week. Today&amp;rsquo;s topic: Marshalling
+<meta name="description" content="As Go has increasingly become my go-to langauge for backend projects, I figured I should brush up on it&amp;rsquo;s fundamentals, and what better way to make sure you learned something that to teach it? As such I&amp;rsquo;m planning to make my series of blog posts over the next week Go-related, continuing from my Channels article last week. Today&amp;rsquo;s topic: Marshalling
 What is Marshalling? Marshalling is the process of transforming a memory representation of an object (typically a struct in Go), into data (ex converting an object into a JSON file)." />
 <meta name="keywords" content=", " />
 
@@ -49,7 +49,7 @@ What is Marshalling? Marshalling is the process of transforming a memory represe
 <meta property="og:locale" content="en" />
 <meta property="og:type" content="article" />
 <meta property="og:title" content="Go Fundamentals: Marshaling">
-<meta property="og:description" content="As Go has increasingly become my go-to langauge for backend projects, I figured I should brush up on it&amp;rsquo;s fundamentals, and what better way to make sure you learned something that to teach it? As such I&amp;rsquo;m planning to make my series of blog posts over the next week Go-related, continuing from my (Channels article)[https://cglavin50.github.io/posts/channels/] last week. Today&amp;rsquo;s topic: Marshalling
+<meta property="og:description" content="As Go has increasingly become my go-to langauge for backend projects, I figured I should brush up on it&amp;rsquo;s fundamentals, and what better way to make sure you learned something that to teach it? As such I&amp;rsquo;m planning to make my series of blog posts over the next week Go-related, continuing from my Channels article last week. Today&amp;rsquo;s topic: Marshalling
 What is Marshalling? Marshalling is the process of transforming a memory representation of an object (typically a struct in Go), into data (ex converting an object into a JSON file)." />
 <meta property="og:url" content="https://cglavin50.github.io/posts/go-fundamentals/" />
 <meta property="og:site_name" content="Terminal" />
@@ -167,7 +167,7 @@ What is Marshalling? Marshalling is the process of transforming a memory represe
   
 
   <div class="post-content"><div>
-        <p>As Go has increasingly become my go-to langauge for backend projects, I figured I should brush up on it&rsquo;s fundamentals, and what better way to make sure you learned something that to teach it? As such I&rsquo;m planning to make my series of blog posts over the next week Go-related, continuing from my (Channels article)[https://cglavin50.github.io/posts/channels/] last week. Today&rsquo;s topic: Marshalling</p>
+        <p>As Go has increasingly become my go-to langauge for backend projects, I figured I should brush up on it&rsquo;s fundamentals, and what better way to make sure you learned something that to teach it? As such I&rsquo;m planning to make my series of blog posts over the next week Go-related, continuing from my <a href="https://cglavin50.github.io/posts/channels/">Channels article</a> last week. Today&rsquo;s topic: Marshalling</p>
 <h1 id="what-is-marshalling">What is Marshalling?<a href="#what-is-marshalling" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
 <p>Marshalling is the process of transforming a memory representation of an object (typically a struct in Go), into data (ex converting an object into a JSON file). Luckily, Go has multiple APIs to work with JSON data, and today we will use the <strong>encoding/json</strong> package to show how to convert data into JSON format, and how to &lsquo;unmarshal&rsquo; it, or parse and extract the JSON data into an object.</p>
 <h1 id="marshalling-in-go">Marshalling in Go<a href="#marshalling-in-go" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
@@ -178,7 +178,7 @@ import (
     &#34;encoding/json&#34;
     &#34;fmt&#34;
 )
-</code></pre><p>Next, let&rsquo;s define a struct that we want to use, say a task for a (To-Do List Project)[https://github.com/cglavin50/to-do.git].</p>
+</code></pre><p>Next, let&rsquo;s define a struct that we want to use, say a task for a <a href="https://github.com/cglavin50/to-do.git">To-Do List Project</a>.</p>
 <pre tabindex="0"><code>type Task struct {
     ID          int
     TaskText    string
@@ -227,10 +227,17 @@ Two final notes:</p>
     </div>
     <div class="pagination__buttons">
         
+        <span class="button previous">
+            <a href="https://cglavin50.github.io/posts/go-fundamentals2/">
+                <span class="button__icon">←</span>
+                <span class="button__text">Go Fundamentals: Intro</span>
+            </a>
+        </span>
+        
         
         <span class="button next">
             <a href="https://cglavin50.github.io/posts/channels/">
-                <span class="button__text">Channels</span>
+                <span class="button__text">Go Fundamentals: Channels</span>
                 <span class="button__icon">→</span>
             </a>
         </span>
