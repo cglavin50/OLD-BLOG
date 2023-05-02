@@ -6,7 +6,33 @@
     <description>Recent content in Posts on Terminal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 19 Apr 2023 23:30:12 -0400</lastBuildDate><atom:link href="https://cglavin50.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 01 May 2023 23:56:03 -0400</lastBuildDate><atom:link href="https://cglavin50.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>FirebaseKey</title>
+      <link>https://cglavin50.github.io/posts/firebasekey/</link>
+      <pubDate>Mon, 01 May 2023 23:56:03 -0400</pubDate>
+      
+      <guid>https://cglavin50.github.io/posts/firebasekey/</guid>
+      <description>Is It Safe To Publish Your Firebase API Key? TLDR: Yes. As a frequent user of Firebase for user authentication, databases, and web-app deployment, I recently ran into the issue of where to put my Firebase API key. When you create a new app with Firebase, you get an API login like this:
+const firebaseConfig = { apiKey: &amp;#34;AIzaSyCCnMZtY_oH07FsUzzAh4zeQN4GiR4W3dQ&amp;#34;, authDomain: &amp;#34;job-crawler-d3002.firebaseapp.com&amp;#34;, projectId: &amp;#34;job-crawler-d3002&amp;#34;, storageBucket: &amp;#34;job-crawler-d3002.appspot.com&amp;#34;, messagingSenderId: &amp;#34;298085583690&amp;#34;, appId: &amp;#34;1:298085583690:web:32133c39677dbc8d4ccfb3&amp;#34;, measurementId: &amp;#34;G-XXMHYVE729&amp;#34; }; Typically posting something like this can be scary, and proper key management can get complex with larger projects.</description>
+      <content>&lt;h1 id=&#34;is-it-safe-to-publish-your-firebase-api-key&#34;&gt;Is It Safe To Publish Your Firebase API Key?&lt;/h1&gt;
+&lt;p&gt;TLDR: Yes.
+As a frequent user of Firebase for user authentication, databases, and web-app deployment, I recently ran into the issue of where to put my Firebase API key. When you create a new app with Firebase, you get an API login like this:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;const firebaseConfig = {
+  apiKey: &amp;#34;AIzaSyCCnMZtY_oH07FsUzzAh4zeQN4GiR4W3dQ&amp;#34;,
+  authDomain: &amp;#34;job-crawler-d3002.firebaseapp.com&amp;#34;,
+  projectId: &amp;#34;job-crawler-d3002&amp;#34;,
+  storageBucket: &amp;#34;job-crawler-d3002.appspot.com&amp;#34;,
+  messagingSenderId: &amp;#34;298085583690&amp;#34;,
+  appId: &amp;#34;1:298085583690:web:32133c39677dbc8d4ccfb3&amp;#34;,
+  measurementId: &amp;#34;G-XXMHYVE729&amp;#34;
+};
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Typically posting something like this can be scary, and proper key management can get complex with larger projects. Git will throw some warnings, and GCP will also throw a notice when ever a Google API Key is publicly accessible. However, these are just warnings that come with any key, and this is a public key that is safe to publish. Accordingly to a &lt;a href=&#34;https://stackoverflow.com/questions/37482366/is-it-safe-to-expose-firebase-apikey-to-the-public/37484053#37484053&#34;&gt;GCP employee&lt;/a&gt;, this data only identifies your project to the Google servers, and is not a security risk. Additionally, combined with some security rules implemented in your project (managing who can access data/when) and &lt;a href=&#34;https://firebase.google.com/docs/app-check&#34;&gt;Firebase App Check&lt;/a&gt; to create API call rules with associated providers, your project will be safe from all potential abuse.&lt;/p&gt;
+&lt;h1 id=&#34;extra-links-for-key-management&#34;&gt;Extra Links for Key Management&lt;/h1&gt;
+&lt;p&gt;While I plan to write a more in-depth post on key-management as it has been a recurring issue for me as of late, I&amp;rsquo;ve found &lt;a href=&#34;https://www.freecodecamp.org/news/how-to-securely-store-api-keys-4ff3ea19ebda&#34;&gt;this&lt;/a&gt; article to be really helpful on tips for storing keys, as well as this &lt;a href=&#34;https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository&#34;&gt;article on how to remove sensitive data from Git repos&lt;/a&gt;.&lt;/p&gt;
+</content>
+    </item>
+    
     <item>
       <title>Go Fundamentals: Intro</title>
       <link>https://cglavin50.github.io/posts/go-fundamentals2/</link>
