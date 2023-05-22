@@ -6,7 +6,55 @@
     <description>Recent content on Terminal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 01 May 2023 23:56:03 -0400</lastBuildDate><atom:link href="https://cglavin50.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 22 May 2023 12:20:43 -0700</lastBuildDate><atom:link href="https://cglavin50.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JavaScript Promises Explained</title>
+      <link>https://cglavin50.github.io/posts/promises-and-callbacks/</link>
+      <pubDate>Mon, 22 May 2023 12:20:43 -0700</pubDate>
+      
+      <guid>https://cglavin50.github.io/posts/promises-and-callbacks/</guid>
+      <description>Promises 101 Promises are the building blocks for asynchronous functions in JS. Promise objects are returned by an async function, and can be handled accordingly, eventually returning either a value upon completion, or an error. They are a clean way to deal with asynchronous functions, and provide an easy way to work with the result of an asynchronous function within a larger setting.
+Promises have three states:
+ Pending: the initial state of a promise, maintained while the async code is executing Resolved: a completed promise Rejected: a failed promise  When a promise is moves from pending to resolved or rejected, it goes from being a pending promise to a settled promise.</description>
+      <content>&lt;h1 id=&#34;promises-101&#34;&gt;Promises 101&lt;/h1&gt;
+&lt;p&gt;Promises are the building blocks for asynchronous functions in JS. Promise objects are returned by an async function, and can be handled accordingly, eventually returning either a value upon completion, or an error. They are a clean way to deal with asynchronous functions, and provide an easy way to work with the result of an asynchronous function within a larger setting.&lt;/p&gt;
+&lt;p&gt;Promises have three states:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pending: the initial state of a promise, maintained while the async code is executing&lt;/li&gt;
+&lt;li&gt;Resolved: a completed promise&lt;/li&gt;
+&lt;li&gt;Rejected: a failed promise&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;When a promise is moves from pending to resolved or rejected, it goes from being a &lt;em&gt;pending&lt;/em&gt; promise to a &lt;em&gt;settled&lt;/em&gt; promise.&lt;/p&gt;
+&lt;h1 id=&#34;callbacks-vs-promise-handling-then&#34;&gt;Callbacks vs Promise Handling (.then())&lt;/h1&gt;
+&lt;p&gt;Callback functions are passed as arguments to an async function, which will then execute after the async operation is finished. For example:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;asyncFunction(function(result) {
+    console.log(&#39;asyncFunction has returned with value: &#39; + result)
+})
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;However, this can lead to &lt;em&gt;Callback Hell&lt;/em&gt;, where chaining multiple callback functions gets messy:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;asyncFunction(function(result) {
+    asyncFunction2(result, function(nextResult) {
+        asyncFunction3(nextResult, function(thirdResult) {
+            console.log(&#39;This is the result of the three async operations dependent on each other&#39;)
+        }, failureCallbackFunction)
+    }, failureCallbackFunction)
+}, failureCallbackFunction)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Instead, you can use the &lt;em&gt;Promise Handler&lt;/em&gt; to handle each settled case. &lt;code&gt;promise.then((data) =&amp;gt; { code here... })&lt;/code&gt; allows you to handle resolved promises, and can be chained together, and paired with a &lt;code&gt;.catch((error) =&amp;gt; { console.log(error)}).&lt;/code&gt; to handle the rejected case (note: &lt;code&gt;.then()&lt;/code&gt; functions return a promise, so you can easily chain multiple together to get sequential asynchronous handling, appended with a &lt;code&gt;.catch()&lt;/code&gt; to handle any outgoing errors). Translating the callback hell from above:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;asyncFunction().then((result) =&amp;gt; {
+    return asyncFunction2(result)
+}).then((nextResult) =&amp;gt; {
+    return asyncFunction3(nextResult)
+}).catch((error) =&amp;gt; { console.log(&#39;Error in promise&#39;) });
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;An alternative syntax is as follows for handling a single promise:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;promise.then(
+    (result) =&amp;gt; { // resolved case
+        console.log({result})
+    },
+    (error) =&amp;gt; { // rejected case
+        console.log(&#39;Error in promise&#39;)
+});
+&lt;/code&gt;&lt;/pre&gt;</content>
+    </item>
+    
     <item>
       <title>FirebaseKey</title>
       <link>https://cglavin50.github.io/posts/firebasekey/</link>
@@ -14,18 +62,18 @@
       
       <guid>https://cglavin50.github.io/posts/firebasekey/</guid>
       <description>Is It Safe To Publish Your Firebase API Key? TLDR: Yes. As a frequent user of Firebase for user authentication, databases, and web-app deployment, I recently ran into the issue of where to put my Firebase API key. When you create a new app with Firebase, you get an API login like this:
-const firebaseConfig = { apiKey: &amp;#34;AIzaSyCCnMZtY_oH07FsUzzAh4zeQN4GiR4W3dQ&amp;#34;, authDomain: &amp;#34;job-crawler-d3002.firebaseapp.com&amp;#34;, projectId: &amp;#34;job-crawler-d3002&amp;#34;, storageBucket: &amp;#34;job-crawler-d3002.appspot.com&amp;#34;, messagingSenderId: &amp;#34;298085583690&amp;#34;, appId: &amp;#34;1:298085583690:web:32133c39677dbc8d4ccfb3&amp;#34;, measurementId: &amp;#34;G-XXMHYVE729&amp;#34; }; Typically posting something like this can be scary, and proper key management can get complex with larger projects.</description>
+const firebaseConfig = { apiKey: &amp;quot;AIzaSyCCnMZtY_oH07FsUzzAh4zeQN4GiR4W3dQ&amp;quot;, authDomain: &amp;quot;job-crawler-d3002.firebaseapp.com&amp;quot;, projectId: &amp;quot;job-crawler-d3002&amp;quot;, storageBucket: &amp;quot;job-crawler-d3002.appspot.com&amp;quot;, messagingSenderId: &amp;quot;298085583690&amp;quot;, appId: &amp;quot;1:298085583690:web:32133c39677dbc8d4ccfb3&amp;quot;, measurementId: &amp;quot;G-XXMHYVE729&amp;quot; }; Typically posting something like this can be scary, and proper key management can get complex with larger projects.</description>
       <content>&lt;h1 id=&#34;is-it-safe-to-publish-your-firebase-api-key&#34;&gt;Is It Safe To Publish Your Firebase API Key?&lt;/h1&gt;
 &lt;p&gt;TLDR: Yes.
 As a frequent user of Firebase for user authentication, databases, and web-app deployment, I recently ran into the issue of where to put my Firebase API key. When you create a new app with Firebase, you get an API login like this:&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;const firebaseConfig = {
-  apiKey: &amp;#34;AIzaSyCCnMZtY_oH07FsUzzAh4zeQN4GiR4W3dQ&amp;#34;,
-  authDomain: &amp;#34;job-crawler-d3002.firebaseapp.com&amp;#34;,
-  projectId: &amp;#34;job-crawler-d3002&amp;#34;,
-  storageBucket: &amp;#34;job-crawler-d3002.appspot.com&amp;#34;,
-  messagingSenderId: &amp;#34;298085583690&amp;#34;,
-  appId: &amp;#34;1:298085583690:web:32133c39677dbc8d4ccfb3&amp;#34;,
-  measurementId: &amp;#34;G-XXMHYVE729&amp;#34;
+  apiKey: &amp;quot;AIzaSyCCnMZtY_oH07FsUzzAh4zeQN4GiR4W3dQ&amp;quot;,
+  authDomain: &amp;quot;job-crawler-d3002.firebaseapp.com&amp;quot;,
+  projectId: &amp;quot;job-crawler-d3002&amp;quot;,
+  storageBucket: &amp;quot;job-crawler-d3002.appspot.com&amp;quot;,
+  messagingSenderId: &amp;quot;298085583690&amp;quot;,
+  appId: &amp;quot;1:298085583690:web:32133c39677dbc8d4ccfb3&amp;quot;,
+  measurementId: &amp;quot;G-XXMHYVE729&amp;quot;
 };
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Typically posting something like this can be scary, and proper key management can get complex with larger projects. Git will throw some warnings, and GCP will also throw a notice when ever a Google API Key is publicly accessible. However, these are just warnings that come with any key, and this is a public key that is safe to publish. Accordingly to a &lt;a href=&#34;https://stackoverflow.com/questions/37482366/is-it-safe-to-expose-firebase-apikey-to-the-public/37484053#37484053&#34;&gt;GCP employee&lt;/a&gt;, this data only identifies your project to the Google servers, and is not a security risk. Additionally, combined with some security rules implemented in your project (managing who can access data/when) and &lt;a href=&#34;https://firebase.google.com/docs/app-check&#34;&gt;Firebase App Check&lt;/a&gt; to create API call rules with associated providers, your project will be safe from all potential abuse.&lt;/p&gt;
 &lt;h1 id=&#34;extra-links-for-key-management&#34;&gt;Extra Links for Key Management&lt;/h1&gt;
@@ -78,8 +126,8 @@ What is Marshalling? Marshalling is the process of transforming a memory represe
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;package main
 
 import (
-    &amp;#34;encoding/json&amp;#34;
-    &amp;#34;fmt&amp;#34;
+    &amp;quot;encoding/json&amp;quot;
+    &amp;quot;fmt&amp;quot;
 )
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Next, let&amp;rsquo;s define a struct that we want to use, say a task for a &lt;a href=&#34;https://github.com/cglavin50/to-do.git&#34;&gt;To-Do List Project&lt;/a&gt;.&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;type Task struct {
@@ -90,10 +138,10 @@ import (
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Note that all members begin with an upper-case letter, as this indicates an exported identifier, and can be used outside the package. This applies to the struct name, Task, as well.
 To marshal, all we need to do is create an instance of a task, and then use the &lt;strong&gt;json.Marshal()&lt;/strong&gt; function, as seen below.&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;func main() {
-    task := Task{ID: 1, TaskText: &amp;#34;marshal this task&amp;#34;, Status: false}
+    task := Task{ID: 1, TaskText: &amp;quot;marshal this task&amp;quot;, Status: false}
     taskData, err := json.Marshal(task)
     if err != nil {
-        fmt.Println(&amp;#34;Error encoding the data&amp;#34;, err)
+        fmt.Println(&amp;quot;Error encoding the data&amp;quot;, err)
     }
     fmt.Println(string(taskData))
 }
@@ -101,16 +149,16 @@ To marshal, all we need to do is create an instance of a task, and then use the 
 &lt;h1 id=&#34;unmarshalling&#34;&gt;Unmarshalling&lt;/h1&gt;
 &lt;p&gt;We can add field tags, which correlate to the JSON interpretation of your data. We can include statements like &amp;ldquo;omitempty&amp;rdquo; to skip these values if they don&amp;rsquo;t exist, and can even rename the variables if we want them to be lowercase, or any other use case when the variable name should be different than the JSON format. We can edit the Task struct with:&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;type Task struct {
-    ID          int         `json:&amp;#34;ID,omitempty&amp;#34;
-    TaskText    string      `json:&amp;#34;TaskText,omitempty&amp;#34;
-    Status      bool        `json:&amp;#34;Status,omitempty&amp;#34;
+    ID          int         `json:&amp;quot;ID,omitempty&amp;quot;
+    TaskText    string      `json:&amp;quot;TaskText,omitempty&amp;quot;
+    Status      bool        `json:&amp;quot;Status,omitempty&amp;quot;
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Now, using this struct we can handle receieved JSON data (ex via a NoSQL DB like Mongo), with the &lt;strong&gt;json.Unmarshal()&lt;/strong&gt; function.&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;func main() {
-    taskJSON := `{&amp;#34;ID&amp;#34;:1,&amp;#34;TaskText&amp;#34;:&amp;#34;unmarshal this task&amp;#34;,&amp;#34;Status&amp;#34;:false}`
+    taskJSON := `{&amp;quot;ID&amp;quot;:1,&amp;quot;TaskText&amp;quot;:&amp;quot;unmarshal this task&amp;quot;,&amp;quot;Status&amp;quot;:false}`
     var task Task
     json.Unmarshal([]byte(taskJSON), &amp;amp;task)
-    fmt.Printf(&amp;#34;ID: %s, TaskText: %s, Status: %s&amp;#34;, task.ID, task.TaskText, task.Status())
+    fmt.Printf(&amp;quot;ID: %s, TaskText: %s, Status: %s&amp;quot;, task.ID, task.TaskText, task.Status())
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This should return &lt;code&gt;ID: 1, TaskText: unmarshal this text, Status: false&lt;/code&gt;
 Two final notes:&lt;/p&gt;
@@ -128,14 +176,14 @@ Two final notes:&lt;/p&gt;
       
       <guid>https://cglavin50.github.io/posts/channels/</guid>
       <description>Intro to Channels in Go As I got a day to work on some Golang projects, I wanted to cover channels in Go. First of all, what are Golang channels and what make them so great? Go is a language known for it&amp;rsquo;s concurrency support, and channels provide an easy way for concurrent goroutines to communicate/send data. Say I have some basic function here:
-package main import ( &amp;#34;fmt&amp;#34; &amp;#34;time&amp;#34; ) func main() { results := make(chan int) // created with the make keyword, we are creating a channel to receive integers over go func() { // so some calculations here time.</description>
+package main import ( &amp;quot;fmt&amp;quot; &amp;quot;time&amp;quot; ) func main() { results := make(chan int) // created with the make keyword, we are creating a channel to receive integers over go func() { // so some calculations here time.</description>
       <content>&lt;h1 id=&#34;intro-to-channels-in-go&#34;&gt;Intro to Channels in Go&lt;/h1&gt;
 &lt;p&gt;As I got a day to work on some Golang projects, I wanted to cover channels in Go. First of all, what are Golang channels and what make them so great? Go is a language known for it&amp;rsquo;s concurrency support, and channels provide an easy way for concurrent goroutines to communicate/send data. Say I have some basic function here:&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;package main
 
 import (
-    &amp;#34;fmt&amp;#34;
-    &amp;#34;time&amp;#34;
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;time&amp;quot;
 )
 
 func main() {
@@ -160,7 +208,7 @@ func main() {
     case msgs &amp;lt;- msgsChannel:
         fmt.Println(msgs)
     case &amp;lt;- quitChannel:
-        fmt.Println(&amp;#34;quit message receieved&amp;#34;)
+        fmt.Println(&amp;quot;quit message receieved&amp;quot;)
         return
 } 
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Note: we can also wrap this in an infinte for loop to keep receiving messages until a quit is received, which will then finally exit the program.&lt;/p&gt;
@@ -178,7 +226,7 @@ PostgreSQL 101 Installation of postgresql (ps) follows your standard linux insta
       <content>&lt;p&gt;As outlined in previous posts, PostgreSQL is a great option for storing and managing complex data types in SQL (including working with JSONS), with rich language support. Today I&amp;rsquo;m going to cover how to get a PostgreSQL DB up and running, and how to get it connected to your backend.&lt;/p&gt;
 &lt;h1 id=&#34;postgresql-101&#34;&gt;PostgreSQL 101&lt;/h1&gt;
 &lt;p&gt;Installation of postgresql (ps) follows your standard linux installation (ex &lt;code&gt;$ sudo apt-get install postgresql&lt;/code&gt;). PS will create and run off the &amp;lsquo;postgres&amp;rsquo; user, so you will need to switch to that account when you want to use the service. First, you need to start ps, with &lt;code&gt;$ sudo service postgresql start&lt;/code&gt; (and you will run this to start, stop, and restart the service at any time). PS runs off roles, so the first stop is to create a user with the command &lt;code&gt;$ sudo -u postgres -c &amp;quot;creatuser user1&amp;quot;&lt;/code&gt;. Then, create a corresponding database &lt;code&gt;$ sudo -u postgres -c &amp;quot;createdb user1db&amp;quot;&lt;/code&gt;. Finally, we will connect to the PostgreSQL shell with &lt;code&gt;$ sudo -u postgre psql&lt;/code&gt;, and grant our user permissions on the databse with &lt;code&gt;$ GRANT ALL PRIVILEGES ON DATABSE user1db TO user1;&lt;/code&gt;.
-Some useful tips: from within the PostgreSQL shell (psql), you can run commands like &amp;lsquo;\l&amp;rsquo; to list all databases, &amp;lsquo;\c dbname&amp;rsquo; to connect to a database, and &amp;lsquo;\conninfo&amp;rsquo; to see what port a database is running on. Lastly, you can edit the postgreql.conf file to add configurations for features like remote connections, ex appending &amp;rsquo;listen_addresses = &amp;lsquo;*&amp;rsquo;&amp;rsquo; to allow remote users to use your DB.&lt;/p&gt;
+Some useful tips: from within the PostgreSQL shell (psql), you can run commands like &amp;lsquo;\l&amp;rsquo; to list all databases, &amp;lsquo;\c dbname&amp;rsquo; to connect to a database, and &amp;lsquo;\conninfo&amp;rsquo; to see what port a database is running on. Lastly, you can edit the postgreql.conf file to add configurations for features like remote connections, ex appending &amp;lsquo;listen_addresses = &amp;lsquo;*&amp;rsquo;&amp;rsquo; to allow remote users to use your DB.&lt;/p&gt;
 &lt;h1 id=&#34;node-postgres-pg&#34;&gt;Node-Postgres (pg)&lt;/h1&gt;
 &lt;p&gt;If you are going to build an app, I&amp;rsquo;d recommend following their great &lt;a href=&#34;https://node-postgres.com/&#34;&gt;documentation&lt;/a&gt;. However, here I&amp;rsquo;ll provide a summary and how to get it up and running quickly. First, start with the classic install &lt;code&gt;npm i pg&lt;/code&gt;, and if you work with TypeScript, &lt;code&gt;npm i @types/pg&lt;/code&gt;. From there, make sure you have your imports &lt;code&gt;const { Client } = require(&#39;pg&#39;)&lt;/code&gt; or &lt;code&gt;import { Client } from &#39;pg&#39;&lt;/code&gt;, and declare &lt;code&gt;const client = new Client()&lt;/code&gt;, instantiating a PG Client object, which will provide you with all the basic needs to operate with your database. The API also defines 3 other objects, pg.Pool (groups of clients), pg.Result (returned from a query), and Cursor (used to effectively stream through large result sets).
 When you create your client object, you will need to define parameters such as user, password, host, port, database, etc. These values will all default to process variables, (ex user defaults to process.env.PGUSER or process.env.USER), so using this in tandem with the dotenv library works great. From there, all you need to do is call &lt;code&gt;client.connect()&lt;/code&gt; and &lt;code&gt;client.query(&#39;SELECT * AS ...&#39;)&lt;/code&gt;, and you will be up and running!&lt;/p&gt;

@@ -140,6 +140,47 @@
     
       <article class="post on-list">
         <h1 class="post-title">
+          <a href="https://cglavin50.github.io/posts/promises-and-callbacks/">JavaScript Promises Explained</a>
+        </h1>
+        <div class="post-meta">
+          
+            <time class="post-date">
+              2023-05-22 ::
+            </time>
+          
+          
+        </div>
+
+        
+          <span class="post-tags">
+            
+            #<a href="https://cglavin50.github.io/tags/"></a>&nbsp;
+            
+            #<a href="https://cglavin50.github.io/tags/"></a>&nbsp;
+            
+          </span>
+        
+
+        
+
+
+        <div class="post-content">
+          
+            Promises 101 Promises are the building blocks for asynchronous functions in JS. Promise objects are returned by an async function, and can be handled accordingly, eventually returning either a value upon completion, or an error. They are a clean way to deal with asynchronous functions, and provide an easy way to work with the result of an asynchronous function within a larger setting.
+Promises have three states:
+ Pending: the initial state of a promise, maintained while the async code is executing Resolved: a completed promise Rejected: a failed promise  When a promise is moves from pending to resolved or rejected, it goes from being a pending promise to a settled promise.
+          
+        </div>
+
+        
+          <div>
+            <a class="read-more button" href="/posts/promises-and-callbacks/">Read more →</a>
+          </div>
+        
+      </article>
+    
+      <article class="post on-list">
+        <h1 class="post-title">
           <a href="https://cglavin50.github.io/posts/firebasekey/">FirebaseKey</a>
         </h1>
         <div class="post-meta">
@@ -167,7 +208,7 @@
         <div class="post-content">
           
             Is It Safe To Publish Your Firebase API Key? TLDR: Yes. As a frequent user of Firebase for user authentication, databases, and web-app deployment, I recently ran into the issue of where to put my Firebase API key. When you create a new app with Firebase, you get an API login like this:
-const firebaseConfig = { apiKey: &#34;AIzaSyCCnMZtY_oH07FsUzzAh4zeQN4GiR4W3dQ&#34;, authDomain: &#34;job-crawler-d3002.firebaseapp.com&#34;, projectId: &#34;job-crawler-d3002&#34;, storageBucket: &#34;job-crawler-d3002.appspot.com&#34;, messagingSenderId: &#34;298085583690&#34;, appId: &#34;1:298085583690:web:32133c39677dbc8d4ccfb3&#34;, measurementId: &#34;G-XXMHYVE729&#34; }; Typically posting something like this can be scary, and proper key management can get complex with larger projects.
+const firebaseConfig = { apiKey: &quot;AIzaSyCCnMZtY_oH07FsUzzAh4zeQN4GiR4W3dQ&quot;, authDomain: &quot;job-crawler-d3002.firebaseapp.com&quot;, projectId: &quot;job-crawler-d3002&quot;, storageBucket: &quot;job-crawler-d3002.appspot.com&quot;, messagingSenderId: &quot;298085583690&quot;, appId: &quot;1:298085583690:web:32133c39677dbc8d4ccfb3&quot;, measurementId: &quot;G-XXMHYVE729&quot; }; Typically posting something like this can be scary, and proper key management can get complex with larger projects.
           
         </div>
 
@@ -287,53 +328,13 @@ What is Marshalling? Marshalling is the process of transforming a memory represe
         <div class="post-content">
           
             Intro to Channels in Go As I got a day to work on some Golang projects, I wanted to cover channels in Go. First of all, what are Golang channels and what make them so great? Go is a language known for it&rsquo;s concurrency support, and channels provide an easy way for concurrent goroutines to communicate/send data. Say I have some basic function here:
-package main import ( &#34;fmt&#34; &#34;time&#34; ) func main() { results := make(chan int) // created with the make keyword, we are creating a channel to receive integers over go func() { // so some calculations here time.
+package main import ( &quot;fmt&quot; &quot;time&quot; ) func main() { results := make(chan int) // created with the make keyword, we are creating a channel to receive integers over go func() { // so some calculations here time.
           
         </div>
 
         
           <div>
             <a class="read-more button" href="/posts/channels/">Read more →</a>
-          </div>
-        
-      </article>
-    
-      <article class="post on-list">
-        <h1 class="post-title">
-          <a href="https://cglavin50.github.io/posts/crawlerp3/">Postgre SQL with JS</a>
-        </h1>
-        <div class="post-meta">
-          
-            <time class="post-date">
-              2023-04-16 ::
-            </time>
-          
-          
-        </div>
-
-        
-          <span class="post-tags">
-            
-            #<a href="https://cglavin50.github.io/tags/"></a>&nbsp;
-            
-            #<a href="https://cglavin50.github.io/tags/"></a>&nbsp;
-            
-          </span>
-        
-
-        
-
-
-        <div class="post-content">
-          
-            As outlined in previous posts, PostgreSQL is a great option for storing and managing complex data types in SQL (including working with JSONS), with rich language support. Today I&rsquo;m going to cover how to get a PostgreSQL DB up and running, and how to get it connected to your backend.
-PostgreSQL 101 Installation of postgresql (ps) follows your standard linux installation (ex $ sudo apt-get install postgresql). PS will create and run off the &lsquo;postgres&rsquo; user, so you will need to switch to that account when you want to use the service.
-          
-        </div>
-
-        
-          <div>
-            <a class="read-more button" href="/posts/crawlerp3/">Read more →</a>
           </div>
         
       </article>

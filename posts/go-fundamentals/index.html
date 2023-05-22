@@ -62,7 +62,7 @@ What is Marshalling? Marshalling is the process of transforming a memory represe
 <meta property="og:image:height" content="627">
 
 
-  <meta property="article:published_time" content="2023-04-18 19:52:16 -0400 EDT" />
+  <meta property="article:published_time" content="2023-04-18 19:52:16 -0400 -0400" />
 
 
 
@@ -175,8 +175,8 @@ What is Marshalling? Marshalling is the process of transforming a memory represe
 <pre tabindex="0"><code>package main
 
 import (
-    &#34;encoding/json&#34;
-    &#34;fmt&#34;
+    &quot;encoding/json&quot;
+    &quot;fmt&quot;
 )
 </code></pre><p>Next, let&rsquo;s define a struct that we want to use, say a task for a <a href="https://github.com/cglavin50/to-do.git">To-Do List Project</a>.</p>
 <pre tabindex="0"><code>type Task struct {
@@ -187,10 +187,10 @@ import (
 </code></pre><p>Note that all members begin with an upper-case letter, as this indicates an exported identifier, and can be used outside the package. This applies to the struct name, Task, as well.
 To marshal, all we need to do is create an instance of a task, and then use the <strong>json.Marshal()</strong> function, as seen below.</p>
 <pre tabindex="0"><code>func main() {
-    task := Task{ID: 1, TaskText: &#34;marshal this task&#34;, Status: false}
+    task := Task{ID: 1, TaskText: &quot;marshal this task&quot;, Status: false}
     taskData, err := json.Marshal(task)
     if err != nil {
-        fmt.Println(&#34;Error encoding the data&#34;, err)
+        fmt.Println(&quot;Error encoding the data&quot;, err)
     }
     fmt.Println(string(taskData))
 }
@@ -198,16 +198,16 @@ To marshal, all we need to do is create an instance of a task, and then use the 
 <h1 id="unmarshalling">Unmarshalling<a href="#unmarshalling" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
 <p>We can add field tags, which correlate to the JSON interpretation of your data. We can include statements like &ldquo;omitempty&rdquo; to skip these values if they don&rsquo;t exist, and can even rename the variables if we want them to be lowercase, or any other use case when the variable name should be different than the JSON format. We can edit the Task struct with:</p>
 <pre tabindex="0"><code>type Task struct {
-    ID          int         `json:&#34;ID,omitempty&#34;
-    TaskText    string      `json:&#34;TaskText,omitempty&#34;
-    Status      bool        `json:&#34;Status,omitempty&#34;
+    ID          int         `json:&quot;ID,omitempty&quot;
+    TaskText    string      `json:&quot;TaskText,omitempty&quot;
+    Status      bool        `json:&quot;Status,omitempty&quot;
 }
 </code></pre><p>Now, using this struct we can handle receieved JSON data (ex via a NoSQL DB like Mongo), with the <strong>json.Unmarshal()</strong> function.</p>
 <pre tabindex="0"><code>func main() {
-    taskJSON := `{&#34;ID&#34;:1,&#34;TaskText&#34;:&#34;unmarshal this task&#34;,&#34;Status&#34;:false}`
+    taskJSON := `{&quot;ID&quot;:1,&quot;TaskText&quot;:&quot;unmarshal this task&quot;,&quot;Status&quot;:false}`
     var task Task
     json.Unmarshal([]byte(taskJSON), &amp;task)
-    fmt.Printf(&#34;ID: %s, TaskText: %s, Status: %s&#34;, task.ID, task.TaskText, task.Status())
+    fmt.Printf(&quot;ID: %s, TaskText: %s, Status: %s&quot;, task.ID, task.TaskText, task.Status())
 }
 </code></pre><p>This should return <code>ID: 1, TaskText: unmarshal this text, Status: false</code>
 Two final notes:</p>

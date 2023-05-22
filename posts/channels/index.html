@@ -7,7 +7,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Intro to Channels in Go As I got a day to work on some Golang projects, I wanted to cover channels in Go. First of all, what are Golang channels and what make them so great? Go is a language known for it&amp;rsquo;s concurrency support, and channels provide an easy way for concurrent goroutines to communicate/send data. Say I have some basic function here:
-package main import ( &amp;#34;fmt&amp;#34; &amp;#34;time&amp;#34; ) func main() { results := make(chan int) // created with the make keyword, we are creating a channel to receive integers over go func() { // so some calculations here time." />
+package main import ( &amp;quot;fmt&amp;quot; &amp;quot;time&amp;quot; ) func main() { results := make(chan int) // created with the make keyword, we are creating a channel to receive integers over go func() { // so some calculations here time." />
 <meta name="keywords" content=", " />
 
   <meta name="robots" content="noodp" />
@@ -50,7 +50,7 @@ package main import ( &amp;#34;fmt&amp;#34; &amp;#34;time&amp;#34; ) func main()
 <meta property="og:type" content="article" />
 <meta property="og:title" content="Go Fundamentals: Channels">
 <meta property="og:description" content="Intro to Channels in Go As I got a day to work on some Golang projects, I wanted to cover channels in Go. First of all, what are Golang channels and what make them so great? Go is a language known for it&amp;rsquo;s concurrency support, and channels provide an easy way for concurrent goroutines to communicate/send data. Say I have some basic function here:
-package main import ( &amp;#34;fmt&amp;#34; &amp;#34;time&amp;#34; ) func main() { results := make(chan int) // created with the make keyword, we are creating a channel to receive integers over go func() { // so some calculations here time." />
+package main import ( &amp;quot;fmt&amp;quot; &amp;quot;time&amp;quot; ) func main() { results := make(chan int) // created with the make keyword, we are creating a channel to receive integers over go func() { // so some calculations here time." />
 <meta property="og:url" content="https://cglavin50.github.io/posts/channels/" />
 <meta property="og:site_name" content="Terminal" />
 
@@ -62,7 +62,7 @@ package main import ( &amp;#34;fmt&amp;#34; &amp;#34;time&amp;#34; ) func main()
 <meta property="og:image:height" content="627">
 
 
-  <meta property="article:published_time" content="2023-04-18 00:02:09 -0400 EDT" />
+  <meta property="article:published_time" content="2023-04-18 00:02:09 -0400 -0400" />
 
 
 
@@ -172,8 +172,8 @@ package main import ( &amp;#34;fmt&amp;#34; &amp;#34;time&amp;#34; ) func main()
 <pre tabindex="0"><code>package main
 
 import (
-    &#34;fmt&#34;
-    &#34;time&#34;
+    &quot;fmt&quot;
+    &quot;time&quot;
 )
 
 func main() {
@@ -198,7 +198,7 @@ func main() {
     case msgs &lt;- msgsChannel:
         fmt.Println(msgs)
     case &lt;- quitChannel:
-        fmt.Println(&#34;quit message receieved&#34;)
+        fmt.Println(&quot;quit message receieved&quot;)
         return
 } 
 </code></pre><p>Note: we can also wrap this in an infinte for loop to keep receiving messages until a quit is received, which will then finally exit the program.</p>
